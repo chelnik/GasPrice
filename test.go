@@ -3,17 +3,16 @@
 
 package main
 
-import (
-	"fmt"
-	"os"
-)
+//func main() {
+//
+//	// using the function
+//	mydir, err := os.Getwd()
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	fmt.Println(mydir)
+//}
 
-func main() {
-
-	// using the function
-	mydir, err := os.Getwd()
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(mydir)
-}
+//1) Сколько было потрачено gas помесячно.
+//rest api
+//web socket

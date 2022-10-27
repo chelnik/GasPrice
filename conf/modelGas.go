@@ -1,4 +1,6 @@
-type T struct {
+package conf
+
+type ModelgGas struct {
 	Ethereum struct {
 		Transactions []struct {
 			Time           string  `json:"time"`
