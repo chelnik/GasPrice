@@ -2,30 +2,44 @@ package conf
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
+	"net/http"
 	"os"
 )
-
-//	type configI interface {
-//		LoadConfig(fileName string)
-//	}
 
 func New() *ModelGas {
 	return &ModelGas{}
 }
 
-func (g *ModelGas) LoadConfig(fileName string) {
+// подгружает gas_price.json из интернета
+func (g *ModelGas) GetRequest() error {
+	url := "https://raw.githubusercontent.com/CryptoRStar/GasPriceTestTask/main/gas_price.json"
+	getGasPriceJson, err := http.Get(url)
+	if err != nil {
+		return fmt.Errorf("http.Get error %s", err)
+	}
+	sliceBytes, err := io.ReadAll(getGasPriceJson.Body)
+	err = json.Unmarshal(sliceBytes, g)
+	if err != nil {
+		return fmt.Errorf("Unmarshal error %s", err)
+	}
+	return nil
+}
+
+// подгружает gas_price.json из файла
+func (g *ModelGas) LoadConfig(fileName string) error {
 	file, err := os.Open(fileName)
 	if err != nil {
-		return
+		return fmt.Errorf("open error %s", err)
 	}
-	slyceBytes, err := io.ReadAll(file)
+	sliceBytes, err := io.ReadAll(file)
 	if err != nil {
-		return
+		return fmt.Errorf("readAll error %s", err)
 	}
-
-	err = json.Unmarshal(slyceBytes, g)
+	err = json.Unmarshal(sliceBytes, g)
 	if err != nil {
-		return
+		return fmt.Errorf("unmarshal error %s", err)
 	}
+	return nil
 }
