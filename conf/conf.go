@@ -10,11 +10,11 @@ import (
 //		LoadConfig(fileName string)
 //	}
 
-func New() *ModelgGas {
-	return &ModelgGas{}
+func New() *ModelGas {
+	return &ModelGas{}
 }
 
-func (a *ModelgGas) LoadConfig(fileName string) {
+func (g *ModelGas) LoadConfig(fileName string) {
 	file, err := os.Open(fileName)
 	if err != nil {
 		return
@@ -24,7 +24,7 @@ func (a *ModelgGas) LoadConfig(fileName string) {
 		return
 	}
 
-	err = json.Unmarshal(slyceBytes, a)
+	err = json.Unmarshal(slyceBytes, g)
 	if err != nil {
 		return
 	}
