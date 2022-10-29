@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  api:
+    build: .
+    container_name: gasPriceApp
+    networks:
+      - my_network
+    hostname: gasPriceApplication
+    ports:
+      - "8080:8080"
+    restart: on-failure
+volumes:
+  postgres_storage:
+    name: gasPriceApplicationVolume
+
+networks:
+  my_network:
+    driver: bridge

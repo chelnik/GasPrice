@@ -18,7 +18,7 @@ type Response struct {
 	EntirePeriod     float64            // payment for the entire period
 }
 
-const port = ":8085"
+const port = ":8080"
 
 func main() {
 	router := mux.NewRouter()
